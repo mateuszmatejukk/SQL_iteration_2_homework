@@ -91,3 +91,24 @@ where customer_id = 2 returning country, acquisition_channel;
 ```sql
 rollback;
 ```
+## Zadanie 8
+```sql
+begin;
+```
+```sql
+select * 
+from course.customers 
+where customer_id = 22;
+```
+```sql
+delete from course.customers 
+where customer_id = 22
+returning customer_id, customer_name, email, country, signup_date, acquisition_channel;
+```
+```sql
+rollback;
+```
+## Zadanie 9
+bo od razu pokazuje nowa wartosc
+## Zadanie 10
+bo pokazuje co zostało usuniete
