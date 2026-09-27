@@ -171,3 +171,19 @@ where customer_id = 123
 returning *;
 ```
 ## Zadanie 10
+```sql
+insert into course.products (
+product_id,
+product_name,
+category,
+base_price)
+
+values (
+433,
+'Polars Ebook',
+'ebook',
+49.99
+)
+on conflict (product_id) do update set
+base_price = excluded.base_price;
+```
