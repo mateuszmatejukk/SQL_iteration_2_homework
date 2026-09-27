@@ -49,3 +49,19 @@ values(
 310);
 ```
 dodałem pozycje zamowienia
+## Zadanie 2
+```sql
+select
+c.customer_name,
+o.order_id,
+oi.product_id,
+oi.quantity,
+oi.unit_price
+from course.customers c 
+join course.orders o
+on c.customer_id = o.customer_id 
+join course.order_items oi
+on o.order_id = oi.order_id
+where o.order_id = 1014;
+```
+tak działa wszystko
