@@ -65,3 +65,109 @@ on o.order_id = oi.order_id
 where o.order_id = 1014;
 ```
 tak działa wszystko
+## Zadanie 3
+```sql
+begin;
+```
+```sql
+update course.orders 
+set status = 'cancelled'
+where order_id = 1014;
+```
+```sql
+select *
+from course.orders 
+where order_id = 1014;
+```
+```sql
+rollback;
+```
+## Zadanie 4
+```sql
+update course.orders 
+set status = 'paid'
+where order_id = 1014
+returning *;
+```
+## Zadanie 5
+```sql
+insert into course.products(
+product_id,
+product_name,
+category,
+base_price)
+
+values(
+345,
+'Pandas Tutorial',
+'course',
+39.99
+)
+returning *;
+```
+## Zadanie 6
+```sql
+insert into course.products(
+product_id,
+product_name,
+category,
+base_price)
+
+values(
+345,
+'PySpark Tutorial',
+'mentoring',
+400
+)
+on conflict(product_id) do update set
+product_name = excluded.product_name,
+category = excluded.category,
+base_price = excluded.base_price;
+```
+## Zadanie 7
+```sql
+delete from course.products 
+where product_id = 345
+returning *;
+```
+## Zadanie 8
+```sql
+delete from course.customers
+where customer_id = 2;
+```
+SQL Error [23503]: BŁĄD: update or delete on table "customers" violates foreign key constraint "fk_orders_customers" on table "orders"
+  Detail: Key (customer_id)=(2) is still referenced from table "orders".
+Customer id jest wciąż przypisany do tabeli order.
+## Zadanie 9
+```sql
+select * from course.order_items 
+where order_item_id = 20;
+```
+kontrolny select
+```sql
+delete from course.order_items 
+where order_item_id = 20
+returning *;
+```
+```sql
+select * 
+from course.orders 
+where order_id = 1014;
+```
+kontrolny select
+```sql
+delete from course.orders 
+where order_id = 1014
+returning *;
+```
+```sql
+select * from course.customers
+where customer_id = 123;
+```
+kontrolny select
+```sql
+delete from course.customers 
+where customer_id = 123
+returning *;
+```
+## Zadanie 10
