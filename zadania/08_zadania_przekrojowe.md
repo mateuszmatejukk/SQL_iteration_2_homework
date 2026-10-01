@@ -187,3 +187,32 @@ values (
 on conflict (product_id) do update set
 base_price = excluded.base_price;
 ```
+## Zadanie 11
+```sql
+select 
+product_id,
+product_name,
+category,
+base_price,
+round((base_price * 1.05),2) as new_price
+from course.products 
+where category = 'ebook'
+
+insert into course.products (
+product_id,
+product_name,
+category,
+base_price)
+
+values(
+160,
+'Databricks Notebook',
+'ebook',
+59.99
+)
+on conflict(product_id) do update set
+base_price = excluded.base_price
+where course.products.base_price is distinct from excluded.base_price;
+```
+## Zadanie 12
+Przy DML należy napisać kontrolnego selecta z tym samym where którego użyję w zmianie. Przy wykonywaniu zmiany należy pamiętać o otworzeniu transakcji. Sprawdzam wynik poprzez porównanie wartości przed i po zmianie. Transakcji używam przy DML, kiedy zmiana modyfikuje dane, a szczególnie wtedy, kiedy obejmuje wiele rekordów.
